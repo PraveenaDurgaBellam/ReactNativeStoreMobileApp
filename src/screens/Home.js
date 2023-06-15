@@ -8,7 +8,9 @@ function Home({ navigation }) {
     </View>
   );
 }
-
+Home.navigationOptions = {
+  headerLeft: null, 
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

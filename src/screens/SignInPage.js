@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Image } from 'react-native';
-import 'react-native-gesture-handler';
+import axios from 'axios';
 
 function SignInPage({ navigation }) {
   const [email, setEmail] = useState('');
@@ -10,54 +11,50 @@ function SignInPage({ navigation }) {
   const [error, setError] = useState('');
 
   const handleSignIn = () => {
-    setError('');
-    if (!email || !password) {
-      setError('Please enter both email and password.');
-      return;
-    }
-
+    const baseUrl = 'https://mydesibazaar-qa.azurewebsites.net/api/v1/Store/';
+    const url = `getStoreDetails?StoreEmail=${email}&StorePassword=${password}`;
     setIsLoading(true);
-
-    // Simulating API call delay
-    // Make API call here to authenticate the user
-    const handleLogin = () => {
-      const baseUrl = 'https://localhost:5001/api/v1/';
-      const url = `Store/getStoreDetails?StoreEmail=${email}&StorePassword=${password}`;
-
-      fetch(baseUrl + url)
-        .then((response) => response.json())
-        .then((responseJson) => {
-          // Handle the API response here
-          console.log('API response:', responseJson);
-
-          // Check if the login was successful
-          if (responseJson.success) {
-            // Perform actions for successful login
-            console.log('Login successful');
-          } else {
-            // Perform actions for failed login
-            console.log('Login failed');
-          }
-        })
-        .catch((error) => {
-          // Error occurred during the API request
-          console.log('Error:', error);
+    setError('');
+   
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InNyYXZhbmlAZ21haWwuY29tIiwic3ViIjoic3JhdmFuaUBnbWFpbC5jb20iLCJuYmYiOjE2ODY4NDAyNTgsImV4cCI6MTY4Njg0Mzg1OCwiaWF0IjoxNjg2ODQwMjU4LCJpc3MiOiJteWRlc2liYXphYXIiLCJhdWQiOiJteWRlc2liYXphYXJtb2JpbGUifQ.C6MqO0HuF-gXVe5v6nvB_Y7IR478IoUbl5QSFJJ-YLw'
+  
+    axios
+      .get(`${baseUrl}${url}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        console.log('Login is successful')
+        setIsLoading(false);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home' }],
         });
-    };
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+        if (error.response) {
+          setError('Invalid credentials. Please try again.');
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          setError('Network error. Please check your internet connection and try again.');
+          console.log(error.request);
+        } else {
+          setError('An error occurred. Please try again later.');
+          console.log('Error', error.message);
+        }
+      });
 
-    setTimeout(() => {
-      // Mock API response
-      const response = { success: true };
-      setIsLoading(false);
-
-      if (response.success) {
-        // Redirect to the details screen
-        navigation.navigate('Home');
-      } else {
-        setError('Invalid email or password.');
-      }
-    }, 2000);
   };
+  SignInPage.navigationOptions = {
+    headerLeft: null, 
+  };
+  
 
   return (
     <View style={styles.container}>
@@ -80,14 +77,6 @@ function SignInPage({ navigation }) {
         secureTextEntry
       />
 
-      <TouchableOpacity
-        style={styles.rememberContainer}
-        onPress={() => setRememberMe(!rememberMe)}
-      >
-        <Text style={styles.rememberText}>Remember Me</Text>
-        <View style={[styles.checkbox, rememberMe && styles.checked]} />
-      </TouchableOpacity>
-
       {error ? <Text style={styles.error}>{error}</Text> : null}
 
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
@@ -109,7 +98,8 @@ function SignInPage({ navigation }) {
       <Text style={styles.appVersion}>Version 1.0 (1)</Text>
     </View>
   );
-};
+}
+
 
 const styles = StyleSheet.create({
   container: {
