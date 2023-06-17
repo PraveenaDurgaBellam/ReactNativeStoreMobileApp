@@ -1,9 +1,9 @@
 import React from "react"
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Image } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from './src/screens/Home';
+import HomeScreen from './src/screens/HomeScreen';
 import SignInPage from './src/screens/SignInPage';
+import StoreRegister from "./src/screens/StoreRegister";
 
 
 const Stack = createStackNavigator();
@@ -14,8 +14,9 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="MyBazaar" component={SignInPage} />
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="SignInPage" component={SignInPage} options={{headerShown:false}} />
+        <Stack.Screen name="Register" component={StoreRegister} options={{ headerShown: false}} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
