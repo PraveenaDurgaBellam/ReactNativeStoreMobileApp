@@ -1,62 +1,69 @@
+/* eslint-disable prettier/prettier */
 import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
-      flex: 1,
-      padding: 20,
-    },
-    scrollViewContainer: {
-      flexGrow: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    section: {
-      marginBottom: 20,
-    },
-    addPhotoButton: {
-      backgroundColor: '#E8E8E8',
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      marginBottom: 20,
-    },
-    addPhotoButtonText: {
-      color: '#000',
-      fontSize: 16,
-      textAlign: 'center',
-    },
-    sectionTitle: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-    textInput: {
-      height: 40,
-      width : 300,
-      borderColor: '#B6B7B7',
-      borderWidth: 1,
-      marginBottom: 10,
-      paddingHorizontal: 10,
-    },
-    registerButton: {
-      backgroundColor: '#3498DB',
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      marginBottom: 20,
-    },
-    registerButtonText: {
-      color: '#FFF',
-      fontSize: 16,
-      textAlign: 'center',
+        flex: 1,
+        backgroundColor: '#FFFFFF',
+        padding: 20,
     },
     profileImageContainer: {
-      alignItems: 'center',
-      marginBottom: 20,
+        alignItems: 'center',
     },
     profileImageFrame: {
-      width: 100,
-      height: 100,
-      borderRadius: 50,
-      borderWidth: 1,
-      borderColor: '#B6B7B7',
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        backgroundColor: 'gray',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
     },
-  });
-  
+    profileImage: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+    },
+    addPhotoButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    addPhotoButtonText: {
+        color: '#3D79B2',
+    },
+    scrollViewContainer: {
+        flexGrow: 1,
+        justifyContent: 'center',
+    },
+    section: {
+        marginBottom: 20,
+    },
+    sectionTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color: '#525252',
+    },
+    textInput: {
+        height: 45,
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 8,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+    },
+    registerButton: {
+        marginTop: 20,
+        width: '100%',
+        height: 40,
+        backgroundColor: '#3D79B2',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 8,
+    },
+    registerButtonText: {
+        color: '#F8F8F8',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+});
