@@ -4,7 +4,7 @@ import styles from './StoreRegisterStyles';
 import { handleStoreRegister } from '../logic/RegisterStore';
 
 
-function StoreRegister(navigation) {
+function StoreRegister({navigation}) {
         const [StoreName, setStoreName] = useState('');
         const [StoreManager, setStoreManager] = useState('');
         const [StoreEmail, setStoreEmail] = useState('');
