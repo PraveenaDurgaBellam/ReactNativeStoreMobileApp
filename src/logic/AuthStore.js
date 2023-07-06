@@ -12,7 +12,7 @@ import axios from 'axios';
          return;
      }   
      try {
-         const url = `Authorize/userlogin?UserEmail=${email}&UserPassword=${password}`;
+         const url = `StoreAuthorize/storelogin?StoreEmail=${email}&StorePassword=${password}`;
          axios
              .post(baseUrl + url, {
                  headers: {
@@ -24,6 +24,8 @@ import axios from 'axios';
                  // Storing tokens in AsyncStorage
                  AsyncStorage.setItem('refreshToken', response.data.refreshToken);
                  AsyncStorage.setItem('accessToken', response.data.accessToken);
+                 console.log('Store id is:', response.data.allStores[0].id);
+                AsyncStorage.setItem('Storeid', response.data.allStores[0].id.toString());
                  // ...
 
                  if (response.data.message === 'Success') {
