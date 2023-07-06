@@ -11,9 +11,12 @@ import axios from 'axios';
 import styles from './AllItemsScreenStyles';
 import { baseUrl } from '../apiUtils/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SearchBar from 'react-native-search-bar';
 
 function AllItemsScreen({ navigation }) {
+  const [searchQuery, setSearchQuery] = useState('');
   const [itemData, setItemData] = useState([]);
+  const [filteredItemData, setFilteredItemData] = useState([]);
 
   useEffect(() => {
     fetchItems();
@@ -35,13 +38,30 @@ function AllItemsScreen({ navigation }) {
       const fetchedItems = response.data.allItems;
       console.log(fetchedItems);
       setItemData(fetchedItems);
+      setFilteredItemData(fetchedItems);
     } catch (error) {
       console.error('Error fetching items:', error);
     }
   };
 
+  const filterItemData = (text) => {
+    if (itemData.length > 0) {
+      const filtered = itemData.filter((item) =>
+        item.product_Name.toLowerCase().includes(text.toLowerCase())
+      );
+      setFilteredItemData(filtered);
+    } else {
+      setFilteredItemData([]);
+    }
+  };
+  
+
+  const handleSearch = (text) => {
+    setSearchQuery(text);
+    filterItemData(text);
+  };
+
   const handleItemPress = (item) => {
-    console.log('Pressed item:', item);
   };
 
   const renderListItem = ({ item }) => (
@@ -71,9 +91,14 @@ function AllItemsScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        {itemData && itemData.length > 0 ? (
+      <SearchBar
+          placeholder="Search stores..."
+          onChangeText={handleSearch}
+          value={searchQuery}
+        />
+        {filteredItemData.length > 0 ? (
           <FlatList
-            data={itemData}
+            data={filteredItemData}
             renderItem={renderListItem}
             keyExtractor={(item) => item.id.toString()}
           />
