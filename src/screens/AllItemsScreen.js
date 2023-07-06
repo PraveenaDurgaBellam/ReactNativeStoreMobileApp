@@ -92,7 +92,7 @@ function AllItemsScreen({ navigation }) {
       </View>
       <View style={styles.container}>
       <SearchBar
-          placeholder="Search stores..."
+          placeholder="Search Items..."
           onChangeText={handleSearch}
           value={searchQuery}
         />
