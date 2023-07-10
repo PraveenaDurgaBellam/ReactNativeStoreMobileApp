@@ -19,36 +19,14 @@ import axios from 'axios';
                      'Content-Type': 'application/json',
                  },
              })
-                .then((response) => {
-                    console.log('API response:', response.data);
-                    // Storing tokens in AsyncStorage
-                    AsyncStorage.setItem('refreshToken', response.data.refreshToken);
-                    AsyncStorage.setItem('accessToken', response.data.accessToken);
-                    // ...
-                    /**AsyncStorage.getItem('refreshToken')
-                        .then((refreshToken) => {
-                            console.log('Refresh Token:', refreshToken);
-                        })
-                        .catch((error) => {
-                            console.log('Error retrieving refresh token:', error);
-                        });**/
-                        AsyncStorage.setItem('storeDetails', JSON.stringify(response.data.allStores))
-  .then(() => {
-    console.log('Store details stored successfully');
-  })
-  .catch((error) => {
-    console.log('Error storing store details:', error);
-  });
-  /**AsyncStorage.getItem('storeDetails')
-  .then((storeDetailsString) => {
-    const storeDetails = JSON.parse(storeDetailsString);
-    console.log('Stored Store Details:', storeDetails);
-    // Use the store details as needed
-  })
-  .catch((error) => {
-    console.log('Error retrieving store details:', error);
-  });
-**/
+             .then((response) => {
+                 console.log('API response:', response.data);
+                 // Storing tokens in AsyncStorage
+                 AsyncStorage.setItem('refreshToken', response.data.refreshToken);
+                 AsyncStorage.setItem('accessToken', response.data.accessToken);
+                 console.log('Store id is:', response.data.allStores[0].id);
+                AsyncStorage.setItem('Storeid', response.data.allStores[0].id.toString());
+                 // ...
 
                  if (response.data.message === 'Success') {
                      console.log('Login successful');
