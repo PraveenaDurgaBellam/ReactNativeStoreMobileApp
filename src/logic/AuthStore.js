@@ -12,19 +12,43 @@ import axios from 'axios';
          return;
      }   
      try {
-         const url = `Authorize/userlogin?UserEmail=${email}&UserPassword=${password}`;
+         const url = `StoreAuthorize/storelogin?StoreEmail=${email}&StorePassword=${password}`;
          axios
              .post(baseUrl + url, {
                  headers: {
                      'Content-Type': 'application/json',
                  },
              })
-             .then((response) => {
-                 console.log('API response:', response.data);
-                 // Storing tokens in AsyncStorage
-                 AsyncStorage.setItem('refreshToken', response.data.refreshToken);
-                 AsyncStorage.setItem('accessToken', response.data.accessToken);
-                 // ...
+                .then((response) => {
+                    console.log('API response:', response.data);
+                    // Storing tokens in AsyncStorage
+                    AsyncStorage.setItem('refreshToken', response.data.refreshToken);
+                    AsyncStorage.setItem('accessToken', response.data.accessToken);
+                    // ...
+                    /**AsyncStorage.getItem('refreshToken')
+                        .then((refreshToken) => {
+                            console.log('Refresh Token:', refreshToken);
+                        })
+                        .catch((error) => {
+                            console.log('Error retrieving refresh token:', error);
+                        });**/
+                        AsyncStorage.setItem('storeDetails', JSON.stringify(response.data.allStores))
+  .then(() => {
+    console.log('Store details stored successfully');
+  })
+  .catch((error) => {
+    console.log('Error storing store details:', error);
+  });
+  /**AsyncStorage.getItem('storeDetails')
+  .then((storeDetailsString) => {
+    const storeDetails = JSON.parse(storeDetailsString);
+    console.log('Stored Store Details:', storeDetails);
+    // Use the store details as needed
+  })
+  .catch((error) => {
+    console.log('Error retrieving store details:', error);
+  });
+**/
 
                  if (response.data.message === 'Success') {
                      console.log('Login successful');
