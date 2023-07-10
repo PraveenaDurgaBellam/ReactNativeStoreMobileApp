@@ -10,10 +10,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "@react-native-async-storage/async-storage": "^1.18.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/stack": "^6.3.16",
     "axios": "^1.4.0",
+    "expo-font": "^11.4.0",
     "install": "^0.13.0",
     "mssql": "^9.1.1",
     "npm": "^9.7.1",
@@ -23,6 +25,7 @@
     "react-native-image-picker": "^6.0.0",
     "react-native-safe-area-context": "^4.5.3",
     "react-native-screens": "^3.20.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-native-search-bar": "^3.5.1",
     "reactnative": "^0.0.0"
   },
