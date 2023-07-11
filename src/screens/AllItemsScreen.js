@@ -62,6 +62,7 @@ function AllItemsScreen({ navigation }) {
   };
 
   const handleItemPress = (item) => {
+    navigation.navigate('ItemDetails', { item });
   };
 
   const renderListItem = ({ item }) => (

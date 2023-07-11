@@ -11,6 +11,7 @@ import TodaysMenuScreen from "./src/screens/TodaysMenuScreen";
 import OrdersScreen from "./src/screens/OrdersScrenn";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import AddItemPage from "./src/screens/AddItemPage";
+import ItemDetailsPage from "./src/screens/ItemDetailsPage";
 
 const Stack = createStackNavigator();
 
@@ -27,11 +28,13 @@ function App() {
         <Stack.Screen name="Vendors" component={ItemVendorsScreen} options={{ headerShown: true }} />
         <Stack.Screen name="Menu" component={TodaysMenuScreen} options={{ headerShown: true }} />
         <Stack.Screen name="Orders" component={OrdersScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="AddItem" component={AddItemPage} options={{ headerShown: true }}/>
+        <Stack.Screen name="ItemDetails" component={ItemDetailsPage} options={{ headerShown: true }}/>
         <Stack.Screen name="Settings" component={SettingsScreen} options={{
           headerStyle: {
             backgroundColor: '#0080FF', // Set your desired color here
           }, headerShown: true}} />
-        <Stack.Screen name="AddItem" component={AddItemPage} options={{ headerShown: true }} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
