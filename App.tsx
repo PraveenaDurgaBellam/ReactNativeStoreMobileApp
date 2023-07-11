@@ -28,9 +28,13 @@ function App() {
         <Stack.Screen name="Vendors" component={ItemVendorsScreen} options={{ headerShown: true }} />
         <Stack.Screen name="Menu" component={TodaysMenuScreen} options={{ headerShown: true }} />
         <Stack.Screen name="Orders" component={OrdersScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: true }} />
         <Stack.Screen name="AddItem" component={AddItemPage} options={{ headerShown: true }}/>
         <Stack.Screen name="ItemDetails" component={ItemDetailsPage} options={{ headerShown: true }}/>
+        <Stack.Screen name="Settings" component={SettingsScreen} options={{
+          headerStyle: {
+            backgroundColor: '#0080FF', // Set your desired color here
+          }, headerShown: true}} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
