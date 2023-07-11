@@ -27,6 +27,10 @@ import axios from 'axios';
                  console.log('Store id is:', response.data.allStores[0].id);
                 AsyncStorage.setItem('Storeid', response.data.allStores[0].id.toString());
                  // ...
+                 const storeDetails = JSON.stringify(response.data.allStores);
+                 AsyncStorage.setItem('storeDetails', storeDetails);
+
+                 
 
                  if (response.data.message === 'Success') {
                      console.log('Login successful');
