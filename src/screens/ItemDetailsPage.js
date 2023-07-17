@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, FlatList, Modal, TouchableOpacity, Alert, Pressable } from 'react-native';
 import axios from 'axios';
@@ -58,7 +59,8 @@ function ItemDetailsPage({ route, navigation }) {
        Alert.alert('Success', 'Available quantity updated successfully.');
     } catch (error) {
       // Handle the error
-      console.error(error);
+      Alert.alert("Failed to update", "Due to empty or invalid data");
+      console.log(error);
     }
   };
 
