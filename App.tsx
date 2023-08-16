@@ -12,6 +12,7 @@ import OrdersScreen from "./src/screens/OrdersScrenn";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import AddItemPage from "./src/screens/AddItemPage";
 import ItemDetailsPage from "./src/screens/ItemDetailsPage";
+import RestockScreen from "./src/screens/RestockScreen";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ function App() {
           headerStyle: {
             backgroundColor: '#0080FF', // Set your desired color here
           }, headerShown: true}} />
+        <Stack.Screen name="Restock" component={RestockScreen} options={{ headerShown: false }} />
         
       </Stack.Navigator>
     </NavigationContainer>
