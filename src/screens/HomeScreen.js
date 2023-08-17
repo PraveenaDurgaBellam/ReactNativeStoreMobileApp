@@ -9,6 +9,7 @@ const itemsData = [
     { id: 'Menu', name: 'Todays Menu', image: require('../assets/todays_menu.png') },
     { id: 'Orders', name: 'Orders', image: require('../assets/orders.png') },
     { id: 'Settings', name: 'Settings', image: require('../assets/settings.png') },
+    { id: 'Restock', name: 'Restock', image: require('../assets/restock.png') },
     // Add more items as needed
 ];
 const windowWidth = Dimensions.get('window').width;
