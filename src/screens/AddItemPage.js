@@ -54,6 +54,16 @@ function AddItemPage({ navigation }) {
               style={styles.textInput}
               placeholder="Price Currency Ticker"
               placeholderTextColor="#B6B7B7"
+            />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Shelf Capacity"
+              placeholderTextColor="#B6B7B7"
+            />    
+            <TextInput
+              style={styles.textInput}
+              placeholder="Item Barcode"
+              placeholderTextColor="#B6B7B7"
             />          
           <TouchableOpacity style={styles.registerButton} onPress={handleCreateItem}>
             <Text style={styles.registerButtonText}>Create Item</Text>
