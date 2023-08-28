@@ -1,10 +1,18 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import { View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, ScrollView, Text, TextInput, TouchableOpacity, Modal } from 'react-native';
 import styles from './StoreRegisterStyles';
 import handleCreateItem from '../logic/CreateItem';
+import CameraPage from './CameraPage';
 
 function AddItemPage({ navigation }) {
+  const [barcodeData, setBarcodeData] = useState(null);
+  const [showCamera, setShowCamera] = useState(false);
+
+  const handleScanSuccess = (data) => {
+    setBarcodeData(data);
+    setShowCamera(false);
+  };
     return (
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.scrollViewContainer}>
@@ -16,6 +24,12 @@ function AddItemPage({ navigation }) {
                 <TouchableOpacity style={styles.addPhotoButton}>
                     <Text style={styles.addPhotoButtonText}>Add Photo</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+            style={styles.addPhotoButton}
+            onPress={() => setShowCamera(true)}
+          >
+            <Text style={styles.addPhotoButtonText}>Scan Barcode</Text>
+          </TouchableOpacity>
             </View>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Item Details</Text>
@@ -63,13 +77,22 @@ function AddItemPage({ navigation }) {
             <TextInput
               style={styles.textInput}
               placeholder="Item Barcode"
+              value={barcodeData || ''}
               placeholderTextColor="#B6B7B7"
-            />          
+            />             
           <TouchableOpacity style={styles.registerButton} onPress={handleCreateItem}>
             <Text style={styles.registerButtonText}>Create Item</Text>
           </TouchableOpacity>
+          
           </View>
           </ScrollView>
+          <Modal
+        visible={showCamera}
+        animationType="slide"
+        onRequestClose={() => setShowCamera(false)}
+      >
+        <CameraPage onScanSuccess={handleScanSuccess} />
+      </Modal>
         </View>
     );
 };
