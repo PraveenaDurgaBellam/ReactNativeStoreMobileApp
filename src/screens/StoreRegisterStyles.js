@@ -66,4 +66,11 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
+    cameraPreview: {
+        flex: 1,
+        width: '100%',
+        height: 300,
+        marginTop: 20,
+        marginBottom: 20,
+      },
 });
